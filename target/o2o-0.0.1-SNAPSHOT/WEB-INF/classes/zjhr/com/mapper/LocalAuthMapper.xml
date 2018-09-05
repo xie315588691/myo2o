@@ -167,6 +167,7 @@
     </set>
     where local_auth_id = #{localAuthId,jdbcType=VARCHAR}
   </update>
+  
   <update id="updateByPrimaryKey" parameterType="zjhr.com.pojo.LocalAuth" >
     update local_auth
     set password = #{password,jdbcType=VARCHAR},

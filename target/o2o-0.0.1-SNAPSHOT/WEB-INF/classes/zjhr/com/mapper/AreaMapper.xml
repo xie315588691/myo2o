@@ -142,6 +142,7 @@
       </if>
     </trim>
   </insert>
+  
   <select id="countByExample" parameterType="zjhr.com.pojo.AreaExample" resultType="java.lang.Integer" >
     select count(*) from area
     <if test="_parameter != null" >
