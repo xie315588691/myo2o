@@ -21,7 +21,7 @@ public class PathUtils {
 	/*
 	 * 根据不同的要求返回项目的子路径
 	 * */
-	public static String getShopImagePath(long shopId){
+	public static String getShopImagePath(String shopId){
 		String imagePath ="/upload/item/shop/"+shopId +"/";
 		
 		return imagePath.replace("/", seperatpor);
