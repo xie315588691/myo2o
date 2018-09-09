@@ -5,31 +5,31 @@ import java.util.Date;
 public class Shop {
     private String shopId;
 
-    private String shopName;
+    private String shopName;//店铺名称
 
-    private String shopDesc;
+    private String shopDesc;//店铺描述
 
-    private String shopAddr;
+    private String shopAddr;//店铺地址
 
-    private String phone;
+    private String phone;//联系方式
 
-    private String shopImg;
+    private String shopImg;//店铺图片
 
-    private Integer priority;
+    private Integer priority;//店铺权重
 
-    private Date createTime;
+    private Date createTime;//创建时间
 
-    private Date lastEditTime;
+    private Date lastEditTime;//更新时间
 
-    private Integer enableStatus;
+    private Integer enableStatus=0;//店铺状态
 
-    private String advice;
+    private String advice;//店铺提醒
 
-    private String areaId;
+    private String areaId;//所属区域id
 
-    private String personid;
+    private String personid;//所属用户id
 
-    private String shopid;
+    private String shopid;//店铺类别id
 
     public String getShopId() {
         return shopId;

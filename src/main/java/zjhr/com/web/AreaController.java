@@ -1,13 +1,15 @@
 package zjhr.com.web;
 
-import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import zjhr.com.pojo.Area;
 import zjhr.com.service.AreaService;
+import zjhr.com.utils.JsonUtils;
 @Controller
 public class AreaController {
 	
@@ -16,13 +18,13 @@ public class AreaController {
 	
 	@RequestMapping("/test.action")
 	public String save() {
-		Area area = new Area();
-		area.setAreaName("西边");
-		area.setCreateTime(new Date());
-		area.setLastEditTime(new Date());
-		area.setPriority(2);
-		areaService.save(area);
 		return "ok";
+	}
+	@RequestMapping("/getAreaName.action")
+	@ResponseBody
+	public String findAllAreaName(){
+		List<Area> list = areaService.findAllAreaName();
+		return JsonUtils.objectToJson(list);
 	}
 
 }

@@ -24,13 +24,6 @@ public class ShopServiceImpl implements ShopService {
 	private ShopMapper ShopMapper;
 
 	@Override
-	public void save(Shop shop) {
-		shop.setShopId(IDUtils.genImageName());
-		ShopMapper.insert(shop);
-
-	}
-
-	@Override
 	public ShopExecution addShop(Shop shop, CommonsMultipartFile shopImg) {
 		if(shop ==null){
 			return new ShopExecution(ShopStateEnum.NULL_SHOP_INFO);
@@ -41,12 +34,11 @@ public class ShopServiceImpl implements ShopService {
 				shop.setCreateTime(new Date());
 				shop.setLastEditTime(new Date());
 				addShopImg(shop, shopImg);
-				
+				ShopMapper.insert(shop);
 			}catch(Exception e){
 				throw new ShopOperationException("addSho error:"+e.getMessage());
 				
 			}
-			
 			
 			return new ShopExecution(ShopStateEnum.CHECK, shop);
 		}

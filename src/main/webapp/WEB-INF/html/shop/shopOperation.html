@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SUI Mobile Demo</title>
+    <title>店铺注册列表</title>
     <meta name="description" content="MSUI: Build mobile apps with simple HTML, CSS, and JS components.">
     <meta name="author" content="阿里巴巴国际UED前端">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -17,23 +16,49 @@
 
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
-
-    <link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-114x114.png">
-    <script>
-      //ga
+    <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+    		var initUrl ="/getAreaName.action";
+    		var initShopCategory ="/getShopCategoryName.action";
+    		$.getJSON(initUrl, function(data){
+    			var areaNameHtml="";
+    			  for (var i = 0; i < data.length; i++) {
+    				  areaNameHtml+="<option value='"+data[i].areaId+"'>"+data[i].areaName+"</option>";
+				}
+    			  
+    			  $("#shopArea").append(areaNameHtml);
+    		});
+    		
+    		$.getJSON(initShopCategory, function(data){
+    			var shopCategoryHtml="";
+    			  for (var i = 0; i < data.length; i++) {
+    				  shopCategoryHtml+="<option value='"+data[i].shopCategoryId+"'>"+data[i].shopCategoryName+"</option>";
+				}
+    			  
+    			  $("#shopCategoryName").append(shopCategoryHtml);
+    		});
+    		
+    		
+    	});
     </script>
-    <script>
-var _hmt = _hmt || [];
-(function() {
-    var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?ba76f8230db5f616edc89ce066670710";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();
-</script>
+    
+    <!-- <link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-114x114.png"> -->
+   <!--  <script>
+		var _hmt = _hmt || [];
+		(function() {
+		    var hm = document.createElement("script");
+		    hm.src = "//hm.baidu.com/hm.js?ba76f8230db5f616edc89ce066670710";
+		    var s = document.getElementsByTagName("script")[0];
+		    s.parentNode.insertBefore(hm, s);
+		})();
+	</script> -->
 
   </head>
   <body>
+	
+	
+  
     <div class="page-group">
     <div id="page-label-input" class="page">
   <header class="bar bar-nav">
@@ -45,101 +70,126 @@ var _hmt = _hmt || [];
   </header>
   <div class="content">
     <div class="list-block">
+  <form novalidate="novalidate" id="addForm" action="/shopRegister.action"  method="post" enctype="multipart/form-data" class="sui-form form-horizontal">
       <ul>
-        <!-- Text inputs -->
+        <!-- 商品名称 -->
         <li>
           <div class="item-content">
             <div class="item-inner">
-              <div class="item-title label">Name</div>
+              <div class="item-title label">商品名称</div>
               <div class="item-input">
-                <input type="text" placeholder="Your name">
+                <input type="text" name="shopName" placeholder="商品名称">
               </div>
             </div>
           </div>
         </li>
+         <!-- 商铺分类 -->
         <li>
           <div class="item-content">
             <div class="item-inner">
-              <div class="item-title label">E-mail</div>
+              <div class="item-title label">商铺分类</div>
               <div class="item-input">
-                <input type="email" placeholder="E-mail">
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title label">Password</div>
-              <div class="item-input">
-                <input type="password" placeholder="Password" class="">
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title label">Gender</div>
-              <div class="item-input">
-                <select>
-                  <option>Male</option>
-                  <option>Female</option>
+                <select name="shopid" id="shopCategoryName">
+                	<option>请选择</option>
                 </select>
               </div>
             </div>
           </div>
         </li>
-        <!-- Date -->
+        <!-- 区域分类 -->
         <li>
           <div class="item-content">
             <div class="item-inner">
-              <div class="item-title label">Birth date</div>
+              <div class="item-title label">区域分类</div>
               <div class="item-input">
-                <input type="date" placeholder="Birth day" value="2014-04-30">
+                <select name="areaId" id="shopArea">
+                	<option>请选择</option>
+                </select>
               </div>
             </div>
           </div>
         </li>
-        <!-- Switch (Checkbox) -->
-        <li>
+        <!-- 详细地址 -->
+         <li>
           <div class="item-content">
             <div class="item-inner">
-              <div class="item-title label">Switch</div>
+              <div class="item-title label">详细地址</div>
               <div class="item-input">
-                <label class="label-switch">
-                  <input type="checkbox">
-                  <div class="checkbox"></div>
-                </label>
+                <input type="text" name="shopAddr" placeholder="详细地址">
               </div>
             </div>
           </div>
         </li>
+        <!-- 联系电话 -->
+         <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">联系电话</div>
+              <div class="item-input">
+                <input type="text" name="phone" placeholder="联系电话">
+              </div>
+            </div>
+          </div>
+        </li>
+        <!-- 列缩图 -->
+         <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">列缩图</div>
+              <div class="item-input">
+                <input type="file" name="shopFile">
+              </div>
+            </div>
+          </div>
+        </li>
+        <!-- 店铺简介 -->
         <li class="align-top">
           <div class="item-content">
             <div class="item-inner">
-              <div class="item-title label">Textarea</div>
+              <div class="item-title label">店铺简介</div>
               <div class="item-input">
-                <textarea></textarea>
+                <textarea placeholder="店铺简介" name="shopDesc"></textarea>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!-- 验证码 -->
+        <li>
+          <div class="item-content">
+            <div class="item-inner">
+              <div class="item-title label">验证码</div>
+               <input type="text" name="checkCode" style="width: 40%" placeholder="验证码">
+              <div class="item-input">
+                <img id="loginform:vCode" src="/validatecode.jsp"
+								onclick="javascript:document.getElementById('loginform:vCode').src='/validatecode.jsp?'+Math.random();" />
               </div>
             </div>
           </div>
         </li>
       </ul>
+	</form>
     </div>
     <div class="content-block">
       <div class="row">
-        <div class="col-50"><a href="#" class="button button-big button-fill button-danger">取消</a></div>
-        <div class="col-50"><a href="#" class="button button-big button-fill button-success">提交</a></div>
+        <div class="col-50"><a href="#" class="button button-big button-fill button-danger">返回</a></div>
+        <div class="col-50"><a href="#" id="shopSubmit" class="button button-big button-fill button-success">提交</a></div>
       </div>
     </div>
   </div>
 </div>
+		<script type="text/javascript">
+		$(function(){
+				$("#shopSubmit").click(function(){
+					$("#addForm").submit();
+				});
+			})
+		</script>
 
     </div>
     
     <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
     <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+   
   </body>
 </html>

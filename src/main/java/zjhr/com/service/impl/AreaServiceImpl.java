@@ -1,5 +1,7 @@
 package zjhr.com.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,12 @@ public class AreaServiceImpl implements AreaService {
 		area.setAreaId(IDUtils.genImageName());
 		areaMapper.insert(area);
 
+	}
+
+	@Override
+	public List<Area> findAllAreaName() {
+		List<Area> list = areaMapper.selectByExample(null);
+		return list;
 	}
 
 }
