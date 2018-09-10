@@ -22,7 +22,7 @@ public class PathUtils {
 	 * 根据不同的要求返回项目的子路径
 	 * */
 	public static String getShopImagePath(String shopId){
-		String imagePath ="/upload/item/shop/"+shopId +"/";
+		String imagePath ="/upload/shop/"+shopId +"/";
 		
 		return imagePath.replace("/", seperatpor);
 	}

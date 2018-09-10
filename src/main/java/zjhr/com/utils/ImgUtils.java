@@ -27,9 +27,8 @@ public class ImgUtils {
 		//新的文件的路径
 		File dest = new File(PathUtils.getImgBasePath()+relativeAddr);
 		try{
-			Thumbnails.of(thumbnail.getInputStream()).size(200,200)
-			.watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath+"/123.png")), 0.5f)
-			.outputQuality(0.8f).toFile(dest);
+			Thumbnails.of(thumbnail.getInputStream()).size(700,700)
+			.toFile(dest);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

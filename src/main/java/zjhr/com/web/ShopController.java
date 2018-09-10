@@ -32,6 +32,8 @@ public class ShopController {
 		String key = (String) request.getSession().getAttribute("key");
 		if( StringUtils.isNotBlank(checkCode) && checkCode.equals(key)){
 			CommonsMultipartFile shopImgFile =  (CommonsMultipartFile) shopFile;
+			String name = request.getServerName();
+			String path = request.getServletPath();
 			shopService.addShop(shop, shopImgFile);
 			return "shop/shopOperation";
 		}else{
